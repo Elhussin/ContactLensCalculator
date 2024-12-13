@@ -4,7 +4,7 @@
 ## Overview
 
 The **ContactLensCalculator** application is a desktop tool designed for validating and calculating contact lens parameters based on user input. It provides features for analyzing eye test data (SPH, CYL, AXIS, etc.) and converting them into precise lens values (spherical and toric).
-## Featuresئ
+## Features
 
 - User-friendly interface built with PyQt5.
 - Validates eye test data such as SPH, CYL, and AXIS.

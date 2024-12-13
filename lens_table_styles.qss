@@ -1,0 +1,61 @@
+/* تنسيقات الجدول */
+/* QTableWidget {
+    border: 1px solid #000000;
+    background-color: #f4f4f4;
+    gridline-color: #a1a1a1;
+    font-size: 14px;
+    color: #333333;
+    selection-background-color: #4a90e2;
+    selection-color: white;
+}
+
+تنسيقات رؤوس الأعمدة */
+QHeaderView::section {
+    background-color: #8f8b8b;
+    color: white;
+    padding: 5px;
+    font-weight: bold;
+    border: 1px solid #000000;
+}
+
+
+QPushButton {
+    background-color: #3498db;
+    color: white;
+    padding:10 50px;
+    border-radius: 5px;
+    font-size: 14px;
+    border: none;
+}
+
+QLabel {
+    font-size: 14px;              /* حجم الخط */
+    font-weight: bold;            /* جعل الخط عريض */
+    /* background-color: #8f8b8b; */
+    color: #8f8b8b;    /* خلفية رمادية فاتحة */
+    padding: 5px;                 /* إضافة مسافة داخلية حول النص */
+    margin-right: 10px;  
+     /* مسافة بين الـ QLabel والـ QLineEdit */
+    alignment: AlignRight;        /* محاذاة النص إلى اليمين */
+    /* border-radius: 5px;           حواف مستديرة */
+    /* border: 1px solid #ccc;       حدود رمادية حول الـ QLabel */
+}
+/* تنسيقات الخلايا */
+/* QTableWidget::item {
+
+    padding: 5px;
+    border: 1px solid #cccccc;
+    background-color: white;
+
+} */
+
+/* عند التمرير فوق الخلايا */
+/* QTableWidget::item:hover {
+    background-color: #e0e0e0;
+} */
+
+/* تنسيق الصفوف المحددة */
+/* QTableWidget::item:selected {
+    background-color: #66afe9;
+    color: white;
+} */

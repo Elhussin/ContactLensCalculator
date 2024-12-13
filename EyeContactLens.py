@@ -1,11 +1,11 @@
 from PyQt5.QtWidgets import QApplication,QHBoxLayout, QFrame, QWidget, QVBoxLayout, QMessageBox, QTableWidget, QTableWidgetItem, QPushButton, QLabel, QHeaderView
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QColor, QFont,QIcon
-from py.EyeContactLensValidator import ContactLensValidator
-from py.EyeTestValidator import EyeTestValidator
-from py.functian import load_stylesheet
+from EyeContactLensValidator import ContactLensValidator
+from EyeTestValidator import EyeTestValidator
+# from functian import load_stylesheet
 import sys
-from py.icon import Icon 
+# from icon import Icon 
 import os
 class EyeContactLens(QWidget):
     """
@@ -25,8 +25,7 @@ class EyeContactLens(QWidget):
         super().__init__()
         self.contact_lens_validator = ContactLensValidator()  # Initializes the contact lens validator
         self.eye_test_validator = EyeTestValidator()  # Initializes the eye test validator
-        load_stylesheet(self, "py/static/style/lens_table_styles.qss")  # Load custom stylesheet for the widget
-        
+                
         self.init_ui()  # Initialize the user interface
     
     def init_ui(self):
@@ -37,7 +36,8 @@ class EyeContactLens(QWidget):
         """
         self.setWindowTitle("Lens Power Form")  # Set the window title
         self.setGeometry(100, 100, 600, 400)  # Set the window size and position
-
+ 
+        self.setWindowIcon(QIcon('./eyeicon.ico'))     
         # Create tables for input and results
         # Define the column headers for the main table
         self.header=["R/L", "SPH", "CY", "AX", "ADD", "PD", "SG", "BV"]
@@ -501,59 +501,53 @@ class EyeContactLens(QWidget):
             return footer
     
 
-# class MainWindow(QWidget):
-#     def __init__(self):
-#         super().__init__()
+class MainWindow(QWidget):
+    def __init__(self):
+        super().__init__()
 
-#         # Set up the main window for the application
-#         self.setGeometry(100, 100, 700, 600)
+        # Set up the main window for the application
+        self.setGeometry(100, 100, 700, 600) # Set the window size and position
+        self.setWindowTitle("Contac tLens Calculator")  # Set the window title
+ 
+        # self.setWindowIcon(QIcon('./eyeicon.ico'))   
+        self.setWindowIcon(QIcon('eyeicon.ico'))
 
-#         icon_path = "./eyeicon.ico"  # تأكد من المسار الصحيح للأيقونة
-        
-#         self.app_icon = Icon(self, icon_path, app_name="Contact Lens Calculator ")  
-      
+        self.form_table = EyeContactLens()  # Instantiate the FormTable widget
 
+        # Set up the layout for the main window
+        layout = QVBoxLayout()
+        layout.addWidget(self.form_table)  # Add the form table widget to the layout
 
-#         self.form_table = FormTable()  # Instantiate the FormTable widget
+        self.setLayout(layout)  # Set the layout for the window
+            # الوصول إلى ملف CSS
+        css_path = self.resource_path("./lens_table_styles.qss")
+        self.resource_path("./leyeicon.ico")
 
-#         # Set up the layout for the main window
-#         layout = QVBoxLayout()
-#         layout.addWidget(self.form_table)  # Add the form table widget to the layout
+        with open(css_path, "r") as css_file:
+            style = css_file.read()
+            self.setStyleSheet(style)
 
-#         self.setLayout(layout)  # Set the layout for the window
-#             # الوصول إلى ملف CSS
-#         css_path = self.resource_path("./lens_table_styles.qss")
-#         icon_path = self.resource_path("./eyeicon.ico")
-#     # الآن يمكنك استخدام هذه المسارات بشكل صحيح:
-#     # مثلًا لتحميل الأيقونة:
-#         self.setWindowIcon(QIcon(icon_path))
+# لتحديد المسار الصحيح للملفات في بيئة PyInstaller
+    def resource_path(self,relative_path):
+        """ 
+        Get the absolute path to the resource.
+        This will work when the app is packaged with PyInstaller.
+        """
+        try:
 
-#         # لتطبيق تنسيقات CSS:
-#         with open(css_path, "r") as css_file:
-#             style = css_file.read()
-#             self.setStyleSheet(style)
-
-# # لتحديد المسار الصحيح للملفات في بيئة PyInstaller
-#     def resource_path(self,relative_path):
-#         """ 
-#         Get the absolute path to the resource.
-#         This will work when the app is packaged with PyInstaller.
-#         """
-#         try:
-#             # تحديد المسار للملف عند تشغيل البرنامج كـ .exe
-#             base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
-#             return os.path.join(base_path, relative_path)
-#         except Exception as e:
-#             return os.path.join(os.path.dirname(os.path.abspath(__file__)), relative_path)
+            base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+            return os.path.join(base_path, relative_path)
+        except Exception as e:
+            return os.path.join(os.path.dirname(os.path.abspath(__file__)), relative_path)
 
 
 
-# if __name__ == "__main__":
-#     app = QApplication(sys.argv)  # Create the application instance
+if __name__ == "__main__":
+    app = QApplication(sys.argv)  # Create the application instance
 
-#     # Create the main window and show it
-#     window = MainWindow()
-#     window.show()
+    # Create the main window and show it
+    window = MainWindow()
+    window.show()
 
-#     # Execute the application
-#     sys.exit(app.exec_())
+    # Execute the application
+    sys.exit(app.exec_())
